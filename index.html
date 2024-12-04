@@ -28,13 +28,33 @@
         align-items: center;
       }
       .navbar-brand {
-        padding: 0;
         display: flex;
         align-items: center;
+        gap: 15px;
+        padding: 0;
       }
       .navbar-brand img {
         height: 45px;
         width: auto;
+      }
+      .brand-text {
+        color: white;
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0;
+        padding-left: 5px;
+        line-height: 1.2;
+      }
+      @media (max-width: 576px) {
+        .brand-text {
+          font-size: 18px;
+        }
+        .navbar-brand img {
+          height: 35px;
+        }
+        .navbar-brand {
+          gap: 10px;
+        }
       }
       .navbar-nav {
         height: 100%;
@@ -292,6 +312,27 @@
           background-color: transparent !important;
         }
       }
+
+      /* About and Location section styles */
+      .about-text,
+      .location-text {
+        margin-top: 10px;
+      }
+
+      @media (max-width: 991.98px) {
+        .about-text,
+        .location-text {
+          margin-top: 20px;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .about-text,
+        .location-text {
+          margin-top: 10px;
+          padding: 20px;
+        }
+      }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   </head>
@@ -300,7 +341,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="images/logo ulon.png" alt="Logo Kopi Ulon Pulasaren" height="40" />
+          <img src="images/logo ulon.png" alt="Logo Kopi Ulon Pulasaren" />
+          <span class="brand-text">Kopi Ulon Pulasaren Cirebon</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -346,7 +388,7 @@
           <div class="col-md-6" data-aos="fade-right">
             <img src="images/indor.png" alt="Suasana Kopi Ulon Pulasaren" class="img-fluid rounded" />
           </div>
-          <div class="col-md-6" data-aos="fade-left">
+          <div class="col-md-6 about-text" data-aos="fade-left">
             <p class="lead">Kopi Ulon Pulasaren adalah tempat yang sempurna untuk menikmati secangkir kopi berkualitas di Cirebon. Kami menyajikan berbagai pilihan kopi dengan biji pilihan terbaik, diolah oleh barista berpengalaman.</p>
             <p>Dengan suasana yang nyaman dan lokasi strategis, kami menghadirkan pengalaman ngopi yang tak terlupakan untuk Anda.</p>
             <div class="mt-4">
@@ -498,12 +540,12 @@
               loading="lazy"
             ></iframe>
           </div>
-          <div class="col-md-6" data-aos="fade-left">
-            <h4>Kopi Ulonpulasaren</h4>
+          <div class="col-md-6 location-text" data-aos="fade-left">
+            <h4>Kopi Ulon Pulasaren</h4>
             <p>Jl. Pulasaren No.23, Pulasaren, Kec. Pekalipan, Kota Cirebon, Jawa Barat 45116</p>
             <div class="mt-4">
               <h5>Jam Operasional:</h5>
-              <p>Setiap Hari: 10:00 - 22:00 WIB</p>
+              <p>Setiap Hari: 09:00 - 23:00 WIB</p>
             </div>
             <div class="mt-4">
               <h5>Ikuti Kami:</h5>
