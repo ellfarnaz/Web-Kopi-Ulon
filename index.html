@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kopi Ulon Pulasaren - Tempat Ngopi Terbaik di Cirebon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <style>
+      :root {
+        --primary-color: #3c2a21;
+        --secondary-color: #d5cea3;
+        --navbar-height: 80px;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        padding-top: var(--navbar-height);
+      }
+      .navbar {
+        background-color: var(--primary-color) !important;
+        height: var(--navbar-height);
+      }
+      .navbar .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .navbar-brand {
+        padding: 0;
+        display: flex;
+        align-items: center;
+      }
+      .navbar-brand img {
+        height: 45px;
+        width: auto;
+      }
+      .navbar-nav {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      .nav-link {
+        color: white !important;
+        font-size: 16px;
+        padding: 8px 16px !important;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      .navbar-toggler {
+        border: none;
+        padding: 8px;
+      }
+      .navbar-toggler:focus {
+        box-shadow: none;
+      }
+      @media (max-width: 991.98px) {
+        .navbar {
+          padding: 0;
+        }
+        .navbar .container {
+          padding: 10px 15px;
+        }
+        .navbar-brand img {
+          height: 40px;
+        }
+        .navbar-collapse {
+          background-color: var(--primary-color);
+          padding: 15px;
+          border-radius: 0 0 10px 10px;
+          margin-top: 0;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+        }
+        .navbar-nav {
+          gap: 5px;
+          height: auto;
+        }
+        .nav-item {
+          width: 100%;
+          height: auto;
+        }
+        .nav-link {
+          padding: 12px 16px !important;
+          width: 100%;
+          height: auto;
+        }
+      }
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/foto tampak depan cafe.png");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        color: white;
+        margin-top: calc(-1 * var(--navbar-height));
+      }
+      .section-title {
+        color: var(--primary-color);
+        font-weight: bold;
+        margin-bottom: 2rem;
+      }
+      .gallery-img {
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      .delivery-logo {
+        height: 30px;
+        margin-right: 10px;
+      }
+      .social-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+      }
+      .menu-img-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        background-color: white;
+        padding: 10px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+      .menu-img {
+        height: 400px;
+        object-fit: contain;
+        width: 100%;
+        transition: transform 0.3s ease;
+        background-color: white;
+      }
+      .menu-img-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .menu-img-overlay i {
+        color: white;
+        font-size: 2rem;
+      }
+      .menu-img-container:hover .menu-img {
+        transform: scale(1.1);
+      }
+      .menu-img-container:hover .menu-img-overlay {
+        opacity: 1;
+      }
+      section {
+        padding-top: 100px;
+        padding-bottom: 100px;
+        scroll-margin-top: var(--navbar-height);
+      }
+      #home {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .navbar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: calc(var(--z-index-navbar) - 1);
+      }
+      .menu-img-container,
+      .gallery-img-container {
+        position: relative;
+        z-index: var(--z-index-content);
+      }
+      .menu-img-container h5 {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-top: 1rem;
+      }
+      @media (max-width: 768px) {
+        .menu-img {
+          height: 300px;
+        }
+      }
+      /* Custom styles for Fancybox */
+      .fancybox__container {
+        --fancybox-bg: rgba(0, 0, 0, 0.9);
+      }
+
+      .fancybox__content {
+        max-width: 800px !important;
+        max-height: 90vh !important;
+        padding: 0 !important;
+        background: transparent !important;
+      }
+
+      .fancybox__image {
+        object-fit: contain !important;
+        cursor: zoom-in !important;
+        transition: transform 0.2s ease-in-out !important;
+      }
+
+      .fancybox__image[data-zoomed="true"] {
+        cursor: zoom-out !important;
+      }
+
+      /* Transition for navbar */
+      .navbar {
+        transition: display 0.3s ease-in-out;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .fancybox__content {
+          max-width: 95% !important;
+          max-height: 80vh !important;
+        }
+      }
+
+      /* Additional navbar styles */
+      .navbar {
+        transition: all 0.3s ease;
+      }
+
+      .nav-link {
+        color: white !important;
+        position: relative;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .nav-link:hover {
+        color: var(--secondary-color) !important;
+      }
+
+      .nav-link:active {
+        background: transparent !important;
+      }
+
+      .nav-link:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      .navbar-toggler {
+        border: none;
+        padding: 0.5rem;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: none;
+        outline: none;
+      }
+
+      @media (max-width: 991.98px) {
+        .navbar-collapse {
+          background-color: var(--primary-color);
+          padding: 1rem;
+          border-radius: 0 0 10px 10px;
+        }
+
+        .nav-link {
+          padding: 0.5rem 1rem;
+        }
+
+        .nav-link:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link:active {
+          background-color: transparent !important;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="images/logo ulon.png" alt="Logo Kopi Ulon Pulasaren" height="40" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">Tentang Kami</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#menu">Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#gallery">Galeri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#location">Lokasi</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container text-center">
+        <h1 class="display-4 mb-4" data-aos="fade-up">Kopi Ulon Pulasaren Cirebon</h1>
+        <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">Nikmati Secangkir Kopi dengan Suasana yang Nyaman</p>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <a href="#order" class="btn btn-light btn-lg">Pesan Sekarang</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about">
+      <div class="container">
+        <h2 class="text-center section-title" data-aos="fade-up">Tentang Kami</h2>
+        <div class="row align-items-center">
+          <div class="col-md-6" data-aos="fade-right">
+            <img src="images/indor.png" alt="Suasana Kopi Ulon Pulasaren" class="img-fluid rounded" />
+          </div>
+          <div class="col-md-6" data-aos="fade-left">
+            <p class="lead">Kopi Ulon Pulasaren adalah tempat yang sempurna untuk menikmati secangkir kopi berkualitas di Cirebon. Kami menyajikan berbagai pilihan kopi dengan biji pilihan terbaik, diolah oleh barista berpengalaman.</p>
+            <p>Dengan suasana yang nyaman dan lokasi strategis, kami menghadirkan pengalaman ngopi yang tak terlupakan untuk Anda.</p>
+            <div class="mt-4">
+              <h5 class="mb-3">Jam Operasional:</h5>
+              <p class="mb-2"><i class="fas fa-clock me-2"></i>Buka Setiap Hari</p>
+              <p><i class="fas fa-clock me-2"></i>09:00 - 23:00 WIB</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="py-5 bg-light" id="menu">
+      <div class="container">
+        <h2 class="text-center section-title" data-aos="fade-up">Menu Kami</h2>
+        <div class="row">
+          <div class="col-md-4 mb-4" data-aos="zoom-in">
+            <div class="menu-img-container">
+              <a href="images/menu signature dan harga.jpeg" data-fancybox="menu-gallery">
+                <img src="images/menu signature dan harga.jpeg" alt="Menu Signature" class="menu-img" />
+                <div class="menu-img-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </a>
+              <h5 class="text-center mt-3">Signature Series</h5>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="menu-img-container">
+              <a href="images/menu n;Cream Series dan harga.jpeg" data-fancybox="menu-gallery">
+                <img src="images/menu n;Cream Series dan harga.jpeg" alt="Menu Cream Series" class="menu-img" />
+                <div class="menu-img-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </a>
+              <h5 class="text-center mt-3">Cream Series</h5>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="menu-img-container">
+              <a href="images/menu SQUASH SERIES dan harga.jpeg" data-fancybox="menu-gallery">
+                <img src="images/menu SQUASH SERIES dan harga.jpeg" alt="Menu Squash Series" class="menu-img" />
+                <div class="menu-img-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </a>
+              <h5 class="text-center mt-3">Squash Series</h5>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4" data-aos="zoom-in">
+            <div class="menu-img-container">
+              <a href="images/memu Literan Sires dan harga.jpeg" data-fancybox="menu-gallery">
+                <img src="images/memu Literan Sires dan harga.jpeg" alt="Menu Literan Series" class="menu-img" />
+                <div class="menu-img-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </a>
+              <h5 class="text-center mt-3">Literan Series</h5>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="menu-img-container">
+              <a href="images/menu Bites and rice bowl dan harga.jpeg" data-fancybox="menu-gallery">
+                <img src="images/menu Bites and rice bowl dan harga.jpeg" alt="Menu Bites and Rice Bowl" class="menu-img" />
+                <div class="menu-img-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </a>
+              <h5 class="text-center mt-3">Bites & Rice Bowl</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-5" id="gallery">
+      <div class="container">
+        <h2 class="text-center section-title" data-aos="fade-up">Galeri</h2>
+        <div class="row">
+          <div class="col-md-4" data-aos="zoom-in">
+            <div class="menu-img-container">
+              <a href="images/outdoor-1.png" data-fancybox="gallery">
+                <img src="images/outdoor-1.png" alt="Outdoor Area" class="menu-img" />
+                <div class="menu-img-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="menu-img-container">
+              <a href="images/galeri tengah.jpeg" data-fancybox="gallery">
+                <img src="images/galeri tengah.jpeg" alt="Indoor Area" class="menu-img" />
+                <div class="menu-img-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="menu-img-container">
+              <a href="images/area outdoor-1.png" data-fancybox="gallery">
+                <img src="images/area outdoor-1.png" alt="Outdoor View" class="menu-img" />
+                <div class="menu-img-overlay">
+                  <i class="fas fa-search-plus"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="py-5 bg-light" id="order">
+      <div class="container text-center">
+        <h2 class="section-title" data-aos="fade-up">Pesan Sekarang</h2>
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-md-8">
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+              <a href="https://gofood.link/u/MzkWj" class="btn btn-dark" target="_blank"> <img src="images/goofod.png" alt="GoFood" class="delivery-logo" /> GoFood </a>
+              <a href="https://shopee.co.id/universal-link/now-food/shop/20561323?deep_and_deferred=1&shareChannel=copy_link" class="btn btn-danger" target="_blank">
+                <img src="images/shopefood.png" alt="ShopeeFood" class="delivery-logo" /> ShopeeFood
+              </a>
+              <a href="https://r.grab.com/g/6-20241204_153901_EA3277F0A0FB43548A5C8D74757284FE_MEXMPS-6-CYVGNKLERA5BAA" class="btn btn-success" target="_blank"> <img src="images/grab.png" alt="Grab" class="delivery-logo" /> Grab </a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4" data-aos="fade-up">
+          <img src="images/pesan-online.png" alt="Pesan Online" class="img-fluid" style="max-width: 300px" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-5" id="location">
+      <div class="container">
+        <h2 class="text-center section-title" data-aos="fade-up">Lokasi Kami</h2>
+        <div class="row">
+          <div class="col-md-6" data-aos="fade-right">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.4791851789584!2d108.5669663!3d-6.7161283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee21e20401b7d%3A0xc76f0c3886b2face!2sKopi%20Ulonpulasaren!5e0!3m2!1sen!2sid!4v1701669600000!5m2!1sen!2sid"
+              width="100%"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="col-md-6" data-aos="fade-left">
+            <h4>Kopi Ulonpulasaren</h4>
+            <p>Jl. Pulasaren No.23, Pulasaren, Kec. Pekalipan, Kota Cirebon, Jawa Barat 45116</p>
+            <div class="mt-4">
+              <h5>Jam Operasional:</h5>
+              <p>Setiap Hari: 10:00 - 22:00 WIB</p>
+            </div>
+            <div class="mt-4">
+              <h5>Ikuti Kami:</h5>
+              <a href="https://www.instagram.com/inikopiulon.cirebon/" class="btn btn-outline-dark social-btn" target="_blank"> <img src="images/logo ig.png" alt="Instagram" height="30" /> @inikopiulon.cirebon </a>
+              <div class="mt-3">
+                <a href="https://maps.app.goo.gl/ueb1WrMdnj2DbEgZA?g_st=ic" class="btn btn-outline-dark social-btn" target="_blank"> <img src="images/logo gmaps.png" alt="Google Maps" height="30" /> Google Maps </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white">
+      <div class="container text-center">
+        <p class="mb-0">© 2023 Kopi Ulonpulasaren Cirebon. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+
+      // Fancybox configuration
+      Fancybox.bind("[data-fancybox]", {
+        Images: {
+          zoom: true,
+        },
+        Toolbar: {
+          display: {
+            left: ["zoomIn", "zoomOut"],
+            middle: [],
+            right: ["close"],
+          },
+          enabled: true,
+        },
+        Zoom: {
+          clicked: true,
+          toggle: true,
+          wheel: true,
+          pinch: true,
+          mode: "zoom",
+        },
+        on: {
+          ready: (fancybox) => {
+            // Hide navbar when Fancybox opens
+            document.querySelector(".navbar").style.display = "none";
+
+            // Add click event to toggle zoom
+            const container = fancybox.container;
+            if (container) {
+              container.addEventListener("click", (e) => {
+                if (e.target.classList.contains("fancybox__image")) {
+                  fancybox.toggleZoom();
+                }
+              });
+            }
+          },
+          destroy: (fancybox) => {
+            // Show navbar when Fancybox closes
+            document.querySelector(".navbar").style.display = "block";
+          },
+        },
+      });
+
+      // Simple scroll function
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          let target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            let offset = target.offsetTop - 80;
+            window.scrollTo({
+              top: offset,
+              behavior: "smooth",
+            });
+          }
+
+          // For mobile menu
+          let navbarCollapse = document.querySelector(".navbar-collapse");
+          if (navbarCollapse.classList.contains("show")) {
+            bootstrap.Collapse.getInstance(navbarCollapse).hide();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
